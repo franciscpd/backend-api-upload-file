@@ -1,8 +1,12 @@
 const express = require('express')
+const morgan = require('morgan')
 
 const app = express()
+const routes = require('./routes')
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(morgan('dev'))
+app.use(routes)
+
 app.listen(3000)
